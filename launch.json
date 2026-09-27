@@ -1,0 +1,22 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "LaunchToken",
+    "name": "Sponsor",
+    "symbol": "SPON",
+    "decimals": 18
+  },
+  "contracts": [
+    {
+      "contract": "DaemonSponsorPool",
+      "constructorArgs": ["$token"]
+    }
+  ],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "Sepolia-only sponsorship toy, unrelated to real IdentityMD payments. Deploy LaunchToken without constructor arguments, then DaemonSponsorPool with the deployed SPON address. The application has no owner, admin or initialization calls and starts with no SPON balance. Users obtain SPON from the factory-seeded ETH/SPON pool and approve the application before registering or sponsoring; direct token transfers bypass accounting and are unrecoverable. Workers bond 100,000 SPON and check in once per 24-hour epoch; payouts are bond-weighted at best, not proof of unique workers. Sponsorships are irrevocable; rewards and unlocked bonds use pull withdrawals. The launch pool has no hook. initialPrice is decimal sqrtPriceX96; a pinned policy specifying an opening market cap determines the effective opening price. Policy, source publication, signed artifact linkage, admission and deployment are service responsibilities."
+}
